@@ -23,12 +23,6 @@ class Wallet
     private $total;
 
     /**
-     * @ORM\OneToOne(targetEntity=Wallet::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $wallet;
-
-    /**
      * @ORM\OneToOne(targetEntity=Client::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -51,19 +45,7 @@ class Wallet
 
         return $this;
     }
-
-    public function getWallet(): ?self
-    {
-        return $this->wallet;
-    }
-
-    public function setWallet(self $wallet): self
-    {
-        $this->wallet = $wallet;
-
-        return $this;
-    }
-
+    
     public function getClient(): ?Client
     {
         return $this->client;

@@ -27,11 +27,26 @@
         <part name="return" type="xsd:string" />
     </message>
 
+    <message name="reloadRequest">
+        <part name="document" type="xsd:string" />
+        <part name="phone" type="xsd:string" />
+        <part name="email" type="xsd:double" />
+    </message>
+
+    <message name="reloadResponse">
+        <part name="return" type="xsd:string" />
+    </message>
+
     <portType name="clientwsdlPortType">
         <operation name="client">
             <documentation>Client</documentation>
             <input message="tns:clientRequest"/>
             <output message="tns:clientResponse"/>
+        </operation>
+        <operation name="reload">
+            <documentation>Client</documentation>
+            <input message="tns:reloadRequest"/>
+            <output message="tns:reloadResponse"/>
         </operation>
     </portType>
 
@@ -47,6 +62,19 @@
 
             <output>
                 <soap:body use="encoded" namespace="urn:clientwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="reload">
+            <soap:operation soapAction="urn:arnleadservicewsdl#reload" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:reloadwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:reloadwsdl"
                     encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </output>
         </operation>
